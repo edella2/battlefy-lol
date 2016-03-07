@@ -1,14 +1,15 @@
 {
-  "name"         : "node-todo",
+  "name"         : "battlefy-lol",
   "version"      : "0.0.1",
-  "description"  : "Simple todo application.",
+  "description"  : "Application for LoL.",
   "main"         : "server.js",
-  "author"       : "Scotch",
+  "author"       : "Eric Dell'Aringa",
   "dependencies" : {
     "express"         : "~4.13.4",
     "mongoose"        : "~3.8.13",
     "morgan"          : "~1.1.1",
     "body-parser"     : "~1.4.3",
-    "method-override" : "~2.1.1"
+    "method-override" : "~2.1.1",
+    "request"         : "^2.69.0"
   }
 }

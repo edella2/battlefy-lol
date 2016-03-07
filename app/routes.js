@@ -1,55 +1,25 @@
-var Todo = require('./models/todo');
+var Summoner = require('./models/summoner');
+var request = require('request');
 
-function getTodos(res) {
-    Todo.find(function (err, todos) {
-
-        // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-        if (err) {
-            res.send(err);
+function getSummonerByName(req, res, next) {
+    var summonerName = req.params.name
+    request("https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/" + summonerName + "?api_key=eeadbecb-9b8f-4377-8895-98f9eaa9406e", function (error, response, body) {
+        if (error) {
+            res.send(error)
+        } else {
+            res.send(JSON.parse(body)[summonerName])
         }
-
-        res.json(todos); // return all todos in JSON format
     });
 }
-;
+
 
 module.exports = function (app) {
 
     // api ---------------------------------------------------------------------
-    // get all todos
-    app.get('/api/todos', function (req, res) {
-        // use mongoose to get all todos in the database
-        getTodos(res);
-    });
 
-    // create todo and send back all todos after creation
-    app.post('/api/todos', function (req, res) {
+    // get summoner by name
+    app.get('/api/summoners/:name', getSummonerByName)
 
-        // create a todo, information comes from AJAX request from Angular
-        Todo.create({
-            text: req.body.text,
-            done: false
-        }, function (err, todo) {
-            if (err)
-                res.send(err);
-
-            // get and return all the todos after you create another
-            getTodos(res);
-        });
-
-    });
-
-    // delete a todo
-    app.delete('/api/todos/:todo_id', function (req, res) {
-        Todo.remove({
-            _id: req.params.todo_id
-        }, function (err, todo) {
-            if (err)
-                res.send(err);
-
-            getTodos(res);
-        });
-    });
 
     // application -------------------------------------------------------------
     app.get('*', function (req, res) {
