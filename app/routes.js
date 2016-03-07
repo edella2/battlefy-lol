@@ -12,10 +12,6 @@ function getSummonerByName(name) {
 function getSummonerById(id) {
     var id = id
     request("https://na.api.pvp.net/api/lol/na/v1.4/summoner/" + id + "?api_key=eeadbecb-9b8f-4377-8895-98f9eaa9406e", function (error, response, body) {
-        console.log("in getSummoner")
-        var data = JSON.parse(body)
-        console.log(data)
-        return body;
     })
 
 };
@@ -30,8 +26,10 @@ module.exports = function (app) {
 
     });
 
+    // get summoner by name
     app.get('/api/summoners/:name', function(req, res) {
         getSummonerByName(req.params.name)
+        console.log(getSummonerByName(req.params.name))
 
     })
 
