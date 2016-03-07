@@ -8,6 +8,7 @@ angular.module('summonerService', [])
 				return $http.get('/api/summoners/');
 			},
 			show : function(id) {
+				console.log("in show")
 				return $http.get('/api/summoners/' + id);
 			},
 			create : function(summonerData) {

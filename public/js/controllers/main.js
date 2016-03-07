@@ -11,8 +11,6 @@ angular.module('summonerController', [])
 
 		Summoners.get()
 			.success(function(data) {
-				console.log("data")
-				console.log(data)
 				$scope.summoners = data;
 				$scope.loading = false;
 			});
@@ -23,13 +21,9 @@ angular.module('summonerController', [])
 					console.log(data)
 					$scope.loading = false;
 					$scope.formData = {};
-					$scope.summoner =
-						request("https://na.api.pvp.net/api/lol/na/v1.4/summoner/" + data + "?api_key=eeadbecb-9b8f-4377-8895-98f9eaa9406e", function (error, response, body) {
-								console.log("body")
-								console.log(body);
-        				return body;
-			    });
-						console.log($scope.summoner)
+					$scope.summoner = data
+					console.log("in scope for showSummoner")
+					console.log($scope.summoner)
 				})
 		}
 
