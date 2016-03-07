@@ -14,7 +14,7 @@ module.exports = function (app) {
     // api ---------------------------------------------------------------------
     // get all summoners
 
-    app.get('/api/summoners/:id', function (req, res) {
+    app.get('/api/summoners/', function (req, res) {
         // use mongoose to get all summoners in the database
 
         getSummoner(req);

@@ -4,7 +4,6 @@ angular.module('summonerController', [])
 	.controller('mainController', ['$scope','$http','Summoners', function($scope, $http, Summoners) {
 		$scope.formData = {};
 		$scope.loading = true;
-		console.log(Summoners)
 
 		// GET =====================================================================
 		// when landing on the page, get all Summoners and show them
@@ -14,10 +13,25 @@ angular.module('summonerController', [])
 			.success(function(data) {
 				console.log("data")
 				console.log(data)
-				$scope.todos = data;
+				$scope.summoners = data;
 				$scope.loading = false;
 			});
 
+		$scope.showSummoner = function() {
+			Summoners.show($scope.formData.text)
+				.success(function(data) {
+					console.log(data)
+					$scope.loading = false;
+					$scope.formData = {};
+					$scope.summoner =
+						request("https://na.api.pvp.net/api/lol/na/v1.4/summoner/" + data + "?api_key=eeadbecb-9b8f-4377-8895-98f9eaa9406e", function (error, response, body) {
+								console.log("body")
+								console.log(body);
+        				return body;
+			    });
+						console.log($scope.summoner)
+				})
+		}
 
 
 		// CREATE ==================================================================

@@ -33,7 +33,7 @@
 
 		<!-- HEADER AND TODO COUNT -->
 		<div class="jumbotron text-center">
-			<h1>I'm a Todo-aholic <span class="label label-info">{{ summoner }}</span></h1>
+			<h1>I'm a Todo-aholic <span class="label label-info">{{ summoner.length }}</span></h1>
 		</div>
 
 		<!-- TODO LIST -->
@@ -45,7 +45,7 @@
 				<!-- LOOP OVER THE TODOS IN $scope.todos -->
 				<div class="checkbox" ng-repeat="summoner in summoners">
 					<label>
-						<input type="checkbox" ng-click="deleteSummoner(todo._id)"> {{ summoner }}
+						<input type="checkbox" ng-click="deleteSummoner(summoner._id)"> {{ summoner.id }}
 					</label>
 				</div>
 
@@ -67,7 +67,7 @@
 					</div>
 
 					<!-- createToDo() WILL CREATE NEW TODOS -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="createSummoner()">Add</button>
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="showSummoner()">Add</button>
 				</form>
 			</div>
 		</div>

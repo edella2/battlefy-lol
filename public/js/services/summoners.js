@@ -8,7 +8,7 @@ angular.module('summonerService', [])
 				return $http.get('/api/summoners/');
 			},
 			show : function(id) {
-				return $http.get('/api/summoners/' + id, params: {data: "hello"});
+				return $http.get('/api/summoners/' + id);
 			},
 			create : function(summonerData) {
 				return $http.post('/api/summoners', summonerData);
