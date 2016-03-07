@@ -9,19 +9,10 @@ angular.module('summonerController', [])
 		// when landing on the page, get all Summoners and show them
 		// use the service to get all the Summoners
 		console.log($scope.loading)
-		Summoners.get()
-			.success(function(data) {
-				console.log(data)
-				$scope.summoners = data;
-				$scope.loading = false;
-			});
 
 		$scope.showSummoner = function() {
-			console.log("in scope for showSummoner")
-			console.log(Summoners.show($scope.formData.text))
 			Summoners.show($scope.formData.text)
 				.success(function(data) {
-					console.log(data)
 					$scope.loading = false;
 					$scope.formData = {};
 					$scope.summoner = data
