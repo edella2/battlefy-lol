@@ -18,11 +18,15 @@ angular.module('summonerController', [])
 					$scope.summoner = data
 					Summoners.matches(data.id)
 						.success(function(matches){
+							console.log(matches.matches)
 							$scope.gamesPlayed = matches.totalGames
 							$scope.matches = matches.matches
-
 						})
-					console.log($scope.gamesPlayed)
+					Summoners.stats(data.id)
+						.success(function(stats) {
+							console.log(stats)
+							$scope.stats = stats
+						})
 				})
 		}
 

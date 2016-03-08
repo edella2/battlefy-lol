@@ -13,6 +13,9 @@ angular.module('summonerService', [])
 			matches : function(id) {
 				return $http.get('/api/matches/' + id);
 			},
+			stats: function(id) {
+				return $http.get('/api/stats/' + id);
+			},
 			create : function(summonerData) {
 				return $http.post('/api/summoners', summonerData);
 			},

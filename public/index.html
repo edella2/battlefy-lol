@@ -43,12 +43,13 @@
 
 
 				<!-- LOOP OVER THE TODOS IN $scope.todos -->
-				<div class="checkbox" ng-show="match in matches">
-					<label>
-						<input type="checkbox" ng-click="deleteSummoner(summoner._id)"> {{ matches.lane }}
-					</label>
-				</div>
+				<ul>
+					<div class="checkbox" ng-repeat="match in matches">
 
+						<li>{{ match['champion'] }}</li>
+
+					</div>
+				</ul>
 				<p class="text-center" ng-show="loading">
 					<span class="fa fa-spinner fa-spin fa-3x"></span>
 				</p>
