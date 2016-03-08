@@ -33,23 +33,13 @@
 
 		<!-- HEADER AND MATCHES COUNT -->
 		<div class="jumbotron text-center" ng-show="load">
-			<h1>{{ summoner.name }} <span class="label label-info">{{ totalRankedPlayed }}</span></h1>
+			<h1>{{ summoner.name }} </h1>
 		</div>
 
-		<div class="container" ng-show="load">
-			<span class="label label-info">Ranked games played: {{ totalRankedPlayed}}</span>
-			<span>W: {{rankedStats["totalSessionsWon"]}} / L: {{ rankedStats["totalSessionsLost"]}} / P: {{((rankedStats["totalSessionsWon"] / totalRankedPlayed) * 100).toPrecision([4])}}%</span>
-		</div>
-
-		<!-- TODO LIST -->
-		<div id="todo-list" class="row">
-			<div class="col-sm-4 col-sm-offset-4">
 
 
-			</div>
-		</div>
 
-		<!-- FORM TO CREATE TODOS -->
+		<!-- Player Search form -->
 		<div id="todo-form" class="row">
 			<div class="col-sm-8 col-sm-offset-2 text-center">
 				<form>
@@ -64,6 +54,34 @@
 				</form>
 			</div>
 		</div>
+
+		<!-- Stat Table -->
+		<div ng-show="load">
+			<div class="container">
+				<span class="label label-info">Ranked games played: {{ totalRankedPlayed}}</span>
+				<span>W: {{rankedStats["totalSessionsWon"]}} / L: {{ rankedStats["totalSessionsLost"]}} / P: {{((rankedStats["totalSessionsWon"] / totalRankedPlayed) * 100).toPrecision([4])}}%</span>
+			</div>
+			<div class="table-responsive">
+			  <table class="table">
+			    <thead>
+			      <tr>
+			        <th>Stat Type</th>
+			        <th>Stat</th>
+			        <th>Average per game</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr ng-repeat="(key, value) in rankedStats">
+						  <td> {{key}} </td>
+						  <td> {{ value }} </td>
+						  <td> {{ averages[key]}}</td>
+						</tr>
+			    </tbody>
+			  </table>
+			  </div>
+			</div>
+		</div>
+
 
 		<div class="text-center text-muted">
 			<p>Check out the <a href="https://github.com/edella2/battlefy-lol">GitHub</a>.</p>

@@ -20,6 +20,8 @@ angular.module('summonerController', [])
 							$scope.gamesPlayed = matches.totalGames
 							$scope.matches = matches.matches
 						})
+
+
 					Summoners.rankedStats(data.id)
 						.success(function(stats){
 
@@ -30,11 +32,22 @@ angular.module('summonerController', [])
 							var totalRankedPlayed = totalRankedStats["totalSessionsPlayed"]
 							$scope.totalRankedPlayed = totalRankedPlayed
 
+							$scope.averages = {}
+							for (var key in totalRankedStats) {
+							  if (totalRankedStats.hasOwnProperty(key)) {
+							  	$scope.averages[key] = (totalRankedStats[key] / totalRankedPlayed).toFixed(2)
+							  }
+							}
+
 							$scope.rankedStats = totalRankedStats
 							console.log($scope)
 							console.log($scope.rankedStats)
 						})
 				})
+		}
+
+		$scope.averageStats = function() {
+
 		}
 
 
