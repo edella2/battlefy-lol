@@ -31,8 +31,11 @@ angular.module('summonerController', [])
 					Summoners.rankedStats(data.id)
 						.success(function(stats){
 
+							var allChampionsStats = stats["champions"]
+							var totalRankedStats = allChampionsStats[allChampionsStats.length - 1]["stats"]
 							var championsStats = stats["champions"]
-							var totalRankedStats = championsStats[championsStats.length - 1]["stats"]
+							console.log(championsStats.pop())
+							console.log(championsStats)
 
 							// get total games ranked games played to do averages
 							var totalRankedPlayed = totalRankedStats["totalSessionsPlayed"]

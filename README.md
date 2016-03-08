@@ -1,6 +1,6 @@
 # Battlefy Challenge
 
-A user can enter in a players name and recieve stats related to their average total stats for kills deaths and assists.  They can recieve the same stats for each individual hero
+A simple application that allows a user to enter a player name.A user will then recieve stats related to their average total stats for kills deaths and assists.  They can recieve the same stats for each individual hero
 
 ## Considerations and notes for reviewers
 
