@@ -31,28 +31,20 @@
 <body ng-controller="mainController">
 	<div class="container">
 
-		<!-- HEADER AND TODO COUNT -->
+		<!-- HEADER AND MATCHES COUNT -->
 		<div class="jumbotron text-center" ng-show="load">
-			<h1>{{ summoner.name }} <span class="label label-info">{{ gamesPlayed }}</span></h1>
+			<h1>{{ summoner.name }} <span class="label label-info">{{ totalRankedPlayed }}</span></h1>
+		</div>
+
+		<div class="container" ng-show="load">
+			<span class="label label-info">Ranked games played: {{ totalRankedPlayed}}</span>
+			<span>W: {{rankedStats["totalSessionsWon"]}} / L: {{ rankedStats["totalSessionsLost"]}} / P: {{((rankedStats["totalSessionsWon"] / totalRankedPlayed) * 100).toPrecision([4])}}%</span>
 		</div>
 
 		<!-- TODO LIST -->
 		<div id="todo-list" class="row">
 			<div class="col-sm-4 col-sm-offset-4">
 
-
-
-				<!-- LOOP OVER THE TODOS IN $scope.todos -->
-				<ul>
-					<div class="checkbox" ng-repeat="match in matches">
-
-						<li>{{ match['champion'] }}</li>
-
-					</div>
-				</ul>
-				<p class="text-center" ng-show="loading">
-					<span class="fa fa-spinner fa-spin fa-3x"></span>
-				</p>
 
 			</div>
 		</div>
@@ -64,18 +56,17 @@
 					<div class="form-group">
 
 						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">
+						<input type="text" class="form-control input-lg text-center" placeholder="Enter a player name" ng-model="formData.text">
 					</div>
 
 					<!-- createToDo() WILL CREATE NEW TODOS -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="showSummoner()">Add</button>
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="showSummoner()">Search</button>
 				</form>
 			</div>
 		</div>
 
 		<div class="text-center text-muted">
-			<p>A demo by <a href="http://scotch.io">Scotch</a>.</p>
-			<p>Read the <a href="http://scotch.io/tutorials/javascript/creating-a-single-page-todo-app-with-node-and-angular">tutorial</a>.</p>
+			<p>Check out the <a href="https://github.com/edella2/battlefy-lol">GitHub</a>.</p>
 		</div>
 
 	</div>

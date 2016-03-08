@@ -16,6 +16,9 @@ angular.module('summonerService', [])
 			stats: function(id) {
 				return $http.get('/api/stats/' + id);
 			},
+			rankedStats: function(id) {
+				return $http.get('/api/ranked_stats/' + id);
+			},
 			create : function(summonerData) {
 				return $http.post('/api/summoners', summonerData);
 			},

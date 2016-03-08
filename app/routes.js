@@ -30,10 +30,20 @@ function getSummonerStats(req, res, next) {
         if (error) {
             res.send(error)
         } else {
-            console.log(JSON.parse(body))
             res.send(JSON.parse(body))
         }
     })
+}
+
+function getRankedSummonerStats(req, res, next) {
+    var id = req.params.id
+    request("https://na.api.pvp.net/api/lol/na/v1.3/stats/by-summoner/" + id + "/ranked?season=SEASON2016&api_key=eeadbecb-9b8f-4377-8895-98f9eaa9406e", function(error, response, body) {
+        if (error) {
+            res.send(error)
+        } else {
+            res.send(JSON.parse(body))
+        }
+    });
 }
 
 module.exports = function (app) {
@@ -44,6 +54,7 @@ module.exports = function (app) {
     app.get('/api/summoners/:name', getSummonerByName)
     app.get('/api/matches/:id', getMatchesById)
     app.get('/api/stats/:id', getSummonerStats)
+    app.get('/api/ranked_stats/:id', getRankedSummonerStats)
     // app.get('/api/matches/')
     // application -------------------------------------------------------------
     app.get('*', function (req, res) {
