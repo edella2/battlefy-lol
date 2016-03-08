@@ -82,19 +82,19 @@
 			    <tbody>
 			      <tr>
 						  <td> Kills </td>
-						  <td> {{champion["stats"]["totalChampionKills"] }} </td>
+						  <td> {{(champion["stats"]["totalChampionKills"] / champion["stats"]["totalSessionsPlayed"]).toFixed(2) }} </td>
 						  <td> {{ averages["totalChampionKills"]}}</td>
 						</tr>
 
 						<tr>
 						  <td> Assists </td>
-						  <td> {{champion["stats"]["totalAssists"] }} </td>
+						  <td> {{(champion["stats"]["totalAssists"] / champion["stats"]["totalSessionsPlayed"]).toFixed(2) }} </td>
 						  <td> {{ averages["totalAssists"]}}</td>
 						</tr>
 
 						<tr>
 						  <td> Deaths </td>
-						  <td> {{champion["stats"]["totalDeathsPerSession"] }} </td>
+						  <td> {{(champion["stats"]["totalDeathsPerSession"] / champion["stats"]["totalSessionsPlayed"]).toFixed(2) }} </td>
 						  <td> {{ averages["totalDeathsPerSession"]}}</td>
 						</tr>
 			    </tbody>
