@@ -32,8 +32,8 @@
 	<div class="container">
 
 		<!-- HEADER AND TODO COUNT -->
-		<div class="jumbotron text-center">
-			<h1>I'm a Todo-aholic <span class="label label-info">{{ summoner.length }}</span></h1>
+		<div class="jumbotron text-center" ng-show="load">
+			<h1>{{ summoner.name }} <span class="label label-info">{{ gamesPlayed }}</span></h1>
 		</div>
 
 		<!-- TODO LIST -->
@@ -43,9 +43,9 @@
 
 
 				<!-- LOOP OVER THE TODOS IN $scope.todos -->
-				<div class="checkbox" ng-repeat="summoner in summoners">
+				<div class="checkbox" ng-show="match in matches">
 					<label>
-						<input type="checkbox" ng-click="deleteSummoner(summoner._id)"> {{ summoner.id }}
+						<input type="checkbox" ng-click="deleteSummoner(summoner._id)"> {{ matches.lane }}
 					</label>
 				</div>
 

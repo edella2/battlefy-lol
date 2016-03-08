@@ -7,11 +7,24 @@ function getSummonerByName(req, res, next) {
         if (error) {
             res.send(error)
         } else {
+            console.log(body)
             res.send(JSON.parse(body)[summonerName])
         }
     });
 }
 
+function getMatchesById(req, res, next) {
+    var id = req.params.id
+    request("https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/" + id + "?api_key=eeadbecb-9b8f-4377-8895-98f9eaa9406e", function (error, response, body) {
+        if (error) {
+            res.send(error)
+        } else {
+
+            console.log(JSON.parse(body))
+            res.send(JSON.parse(body))
+        }
+    })
+}
 
 module.exports = function (app) {
 
@@ -19,8 +32,9 @@ module.exports = function (app) {
 
     // get summoner by name
     app.get('/api/summoners/:name', getSummonerByName)
+    app.get('/api/matches/:id', getMatchesById)
 
-
+    // app.get('/api/matches/')
     // application -------------------------------------------------------------
     app.get('*', function (req, res) {
         res.sendFile(__dirname + '/public/index.html'); // load the single view file (angular will handle the page changes on the front-end)

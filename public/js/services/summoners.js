@@ -10,6 +10,9 @@ angular.module('summonerService', [])
 			show : function(id) {
 				return $http.get('/api/summoners/' + id);
 			},
+			matches : function(id) {
+				return $http.get('/api/matches/' + id);
+			},
 			create : function(summonerData) {
 				return $http.post('/api/summoners', summonerData);
 			},
