@@ -1,32 +1,19 @@
-# Node Todo App
+# Battlefy Challenge
 
-A Node app built with MongoDB and Angular. For demonstration purposes and a tutorial.
+A user can enter in a players name and recieve stats related to their average total stats for kills deaths and assists.  They can recieve the same stats for each individual hero
 
-Node provides the RESTful API. Angular provides the frontend and accesses the API. MongoDB stores like a hoarder.
+## Considerations and notes for reviewers
 
-## Requirements
+I was having difficulty retrieving a champions name based on the champion ID from the LoL API.  I could not find which API call would return the champion name, which could then be used for displaying the correct name of the champion and the image next to each table.
 
-- [Node and npm](http://nodejs.org)
+
 
 ## Installation
 
-1. Clone the repository: `git clone git@github.com:scotch-io/node-todo`
+1. Clone the repository
 2. Install the application: `npm install`
 3. Start the server: `node server.js`
 4. View in browser at `http://localhost:8080`
 
-## Tutorial Series
 
-This repo corresponds to the Node Todo Tutorial Series on [scotch.io](http://scotch.io)
 
-Each branch represents a certain tutorial.
-- tut1-starter: [Creating a Single Page Todo App with Node and Angular](http://scotch.io/tutorials/javascript/creating-a-single-page-todo-app-with-node-and-angular)
-- tut2-services: Coming Soon
-- tut3-auth: Coming Soon
-- tut4-sockets: Coming Soon
-- tut5-redis: Coming Soon
-- tut6-organization: Coming Soon
-
-Happy Todo-ing!
-
-![Todo-aholic](http://i.imgur.com/ikyqgrn.png)
