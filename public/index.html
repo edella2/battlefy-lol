@@ -12,12 +12,7 @@
 	<!-- SCROLLS -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-	<style>
-		html 					{ overflow-y:scroll; }
-		body 					{ padding-top:50px; }
-		#todo-list 				{ margin-bottom:30px; }
-		#todo-form 	 			{ margin-bottom:50px; }
-	</style>
+  <link rel="stylesheet" href="styles/main.css">
 
 	<!-- SPELLS -->
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
@@ -28,7 +23,7 @@
 
 </head>
 <!-- SET THE CONTROLLER -->
-<body ng-controller="mainController">
+<body ng-controller="mainController" class="bgc-beige">
 	<div class="container">
 
 		<!-- HEADER AND MATCHES COUNT -->
@@ -49,7 +44,7 @@
 						<input type="text" class="form-control input-lg text-center" placeholder="Enter a player name" ng-model="formData.text">
 					</div>
 
-					<!-- createToDo() WILL CREATE NEW TODOS -->
+					<!-- showSummoner() displays all info related to summoner name -->
 					<button type="submit" class="btn btn-primary btn-lg" ng-click="showSummoner()">Search</button>
 				</form>
 			</div>
@@ -58,23 +53,47 @@
 		<!-- Stat Table -->
 		<div ng-show="load">
 			<div class="container">
-				<span class="label label-info">Ranked games played: {{ totalRankedPlayed}}</span>
-				<span>W: {{rankedStats["totalSessionsWon"]}} / L: {{ rankedStats["totalSessionsLost"]}} / P: {{((rankedStats["totalSessionsWon"] / totalRankedPlayed) * 100).toPrecision([4])}}%</span>
+				<h2><span>Ranked games played: </span>
+				<span class="label label-info">Total:{{ totalRankedPlayed}} // W: {{rankedStats["totalSessionsWon"]}} / <span class="red"> L: {{ rankedStats["totalSessionsLost"]}} </span> / P: {{((rankedStats["totalSessionsWon"] / totalRankedPlayed) * 100).toPrecision([4])}}%</span></h2>
 			</div>
-			<div class="table-responsive">
-			  <table class="table">
+			<div class="container">
+				<h3><span>Average KDA: </span><span class="label label-info">{{averages["totalChampionKills"]}} / <span class="red">{{averages["totalDeathsPerSession"]}}</span> / {{averages["totalAssists"]}} </span></h3>
+			</div>
+
+			<div class="table-responsive" ng-repeat="champion in champions">
+				<div class="row">
+					<div class="col-sm-6">
+						<img src="http://ddragon.leagueoflegends.com/cdn/6.5.1/img/champion/Aatrox.png " alt="">
+					</div>
+					<div class="col-sm-6">
+						<h3>Champion id: {{champion["id"]}}</h3>
+					</div>
+				</div>
+			  <table class="table bgc-silver">
 			    <thead>
 			      <tr>
 			        <th>Stat Type</th>
-			        <th>Stat</th>
-			        <th>Average per game</th>
+			        <th>Average per champion</th>
+			        <th>Average total</th>
 			      </tr>
 			    </thead>
 			    <tbody>
-			      <tr ng-repeat="(key, value) in rankedStats">
-						  <td> {{key}} </td>
-						  <td> {{ value }} </td>
-						  <td> {{ averages[key]}}</td>
+			      <tr>
+						  <td> Kills </td>
+						  <td> {{champion["stats"]["totalChampionKills"] }} </td>
+						  <td> {{ averages["totalChampionKills"]}}</td>
+						</tr>
+
+						<tr>
+						  <td> Assists </td>
+						  <td> {{champion["stats"]["totalAssists"] }} </td>
+						  <td> {{ averages["totalAssists"]}}</td>
+						</tr>
+
+						<tr>
+						  <td> Deaths </td>
+						  <td> {{champion["stats"]["totalDeathsPerSession"] }} </td>
+						  <td> {{ averages["totalDeathsPerSession"]}}</td>
 						</tr>
 			    </tbody>
 			  </table>

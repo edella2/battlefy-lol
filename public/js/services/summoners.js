@@ -7,6 +7,9 @@ angular.module('summonerService', [])
 			get : function() {
 				return $http.get('/api/summoners/');
 			},
+			championList : function() {
+				return $http.get('/api/champion_list');
+			},
 			show : function(id) {
 				return $http.get('/api/summoners/' + id);
 			},

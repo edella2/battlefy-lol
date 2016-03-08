@@ -7,7 +7,7 @@ function getSummonerByName(req, res, next) {
         if (error) {
             res.send(error)
         } else {
-            console.log(body)
+
             res.send(JSON.parse(body)[summonerName])
         }
     });
@@ -46,6 +46,17 @@ function getRankedSummonerStats(req, res, next) {
     });
 }
 
+// cant find champion names to search for image
+function getChampionList(req, res, next) {
+    request("https://na.api.pvp.net/api/lol/na/v1.2/champion?freeToPlay=2&api_key=eeadbecb-9b8f-4377-8895-98f9eaa9406e", function(error, response, body) {
+        if (error) {
+            res.send(error)
+        } else {
+            res.send(JSON.parse(body))
+        }
+    })
+}
+
 module.exports = function (app) {
 
     // api ---------------------------------------------------------------------
@@ -55,6 +66,7 @@ module.exports = function (app) {
     app.get('/api/matches/:id', getMatchesById)
     app.get('/api/stats/:id', getSummonerStats)
     app.get('/api/ranked_stats/:id', getRankedSummonerStats)
+    app.get('/api/champion_list', getChampionList)
     // app.get('/api/matches/')
     // application -------------------------------------------------------------
     app.get('*', function (req, res) {

@@ -21,6 +21,12 @@ angular.module('summonerController', [])
 							$scope.matches = matches.matches
 						})
 
+					Summoners.championList()
+						.success(function(data) {
+
+							$scope.championList = data
+						})
+
 
 					Summoners.rankedStats(data.id)
 						.success(function(stats){
@@ -39,9 +45,9 @@ angular.module('summonerController', [])
 							  }
 							}
 
+							$scope.champions = championsStats
 							$scope.rankedStats = totalRankedStats
-							console.log($scope)
-							console.log($scope.rankedStats)
+
 						})
 				})
 		}
