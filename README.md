@@ -15,5 +15,10 @@ I was having difficulty retrieving a champions name based on the champion ID fro
 3. Start the server: `node server.js`
 4. View in browser at `http://localhost:8080`
 
+## Website
+
+Deployed on heroku here:
+
+[https://battlefy-lol-test.herokuapp.com/](https://battlefy-lol-test.herokuapp.com/)
 
 
