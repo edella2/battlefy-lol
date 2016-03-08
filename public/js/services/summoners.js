@@ -7,8 +7,20 @@ angular.module('summonerService', [])
 			get : function() {
 				return $http.get('/api/summoners/');
 			},
+			championList : function() {
+				return $http.get('/api/champion_list');
+			},
 			show : function(id) {
 				return $http.get('/api/summoners/' + id);
+			},
+			matches : function(id) {
+				return $http.get('/api/matches/' + id);
+			},
+			stats: function(id) {
+				return $http.get('/api/stats/' + id);
+			},
+			rankedStats: function(id) {
+				return $http.get('/api/ranked_stats/' + id);
 			},
 			create : function(summonerData) {
 				return $http.post('/api/summoners', summonerData);

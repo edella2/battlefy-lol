@@ -8,50 +8,53 @@ angular.module('summonerController', [])
 		// GET =====================================================================
 		// when landing on the page, get all Summoners and show them
 		// use the service to get all the Summoners
-		console.log($scope.loading)
 
 		$scope.showSummoner = function() {
 			Summoners.show($scope.formData.text)
 				.success(function(data) {
-					$scope.loading = false;
+					$scope.load = true;
 					$scope.formData = {};
 					$scope.summoner = data
-					console.log($scope.summoner)
+					Summoners.matches(data.id)
+						.success(function(matches){
+							$scope.gamesPlayed = matches.totalGames
+							$scope.matches = matches.matches
+						})
+
+					Summoners.championList()
+						.success(function(data) {
+
+							$scope.championList = data
+						})
+
+
+					Summoners.rankedStats(data.id)
+						.success(function(stats){
+
+							var championsStats = stats["champions"]
+							var totalRankedStats = championsStats[championsStats.length - 1]["stats"]
+
+							// get total games ranked games played to do averages
+							var totalRankedPlayed = totalRankedStats["totalSessionsPlayed"]
+							$scope.totalRankedPlayed = totalRankedPlayed
+
+							$scope.averages = {}
+							for (var key in totalRankedStats) {
+							  if (totalRankedStats.hasOwnProperty(key)) {
+							  	$scope.averages[key] = (totalRankedStats[key] / totalRankedPlayed).toFixed(2)
+							  }
+							}
+
+							$scope.champions = championsStats
+							$scope.rankedStats = totalRankedStats
+
+						})
 				})
 		}
 
+		$scope.averageStats = function() {
 
-		// CREATE ==================================================================
-		// when submitting the add form, send the text to the node API
-		$scope.createSummoner = function() {
+		}
 
-			// validate the formData to make sure that something is there
-			// if form is empty, nothing will happen
-			if ($scope.formData.text != undefined) {
-				$scope.loading = true;
 
-				// call the create function from our service (returns a promise object)
-				Summoners.create($scope.formData)
-
-					// if successful creation, call our get function to get all the new todos
-					.success(function(data) {
-						$scope.loading = false;
-						$scope.formData = {}; // clear the form so our user is ready to enter another
-						$scope.todos = data; // assign our new list of todos
-					});
-			}
-		};
-
-		// DELETE ==================================================================
-		// delete a todo after checking it
-		$scope.deleteSummoner = function(id) {
-			$scope.loading = true;
-
-			Summoners.delete(id)
-				// if successful creation, call our get function to get all the new Summoners
-				.success(function(data) {
-					$scope.loading = false;
-					$scope.todos = data; // assign our new list of todos
-				});
-		};
 	}]);
